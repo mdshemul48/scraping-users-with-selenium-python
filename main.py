@@ -14,15 +14,18 @@ class web:
             service=Service(ChromeDriverManager().install()), options=options
         )
 
-    def get(self, url: str) -> None:
+    def get(self, url: str) -> webdriver.Chrome:
         self.driver.get(url)
+        return self.driver
 
 
 def main():
-    url = "https://www.google.com"
+    url = "https://circlenetworkbd.net/"
     w = web()
-    print("hello world")
-    w.get(url)
+    website = w.get(url)
+
+    pagecourse: str = website.page_source
+    print(pagecourse)
 
 
 if __name__ == "__main__":
