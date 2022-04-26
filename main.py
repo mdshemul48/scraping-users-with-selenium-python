@@ -10,9 +10,8 @@ class web:
     def __init__(self) -> None:
         options = webdriver.ChromeOptions()
         options.add_experimental_option("debuggerAddress", "localhost:9222")
-        self.driver = webdriver.Chrome(
-            service=Service(ChromeDriverManager().install()), options=options
-        )
+        service = Service(ChromeDriverManager().install())
+        self.driver = webdriver.Chrome(service=service, options=options)
 
     def get(self, url: str) -> webdriver.Chrome:
         self.driver.get(url)
