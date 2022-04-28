@@ -1,4 +1,3 @@
-from ctypes.wintypes import PINT
 from selenium import webdriver
 import time
 from bs4 import BeautifulSoup
@@ -23,10 +22,10 @@ def main():
     all_user_codes = htmlCodes()
     all_user_soup = BeautifulSoup(all_user_codes, "html.parser")
     all_users_element = all_user_soup.find_all("tr")
-    value = 1
+    iter = 1
     for user in all_users_element:
-        print(value)
-        value += 1
+        print(iter)
+        iter += 1
         user_detail = user.find_all("td")
         user_id: str = user_detail[1].getText()
 
@@ -58,7 +57,6 @@ def main():
             "block": block,
         }
         all_users.append(user_data)
-        break
 
     json_data = json.dumps(all_users)
     json_file = open("data.json", "w")
